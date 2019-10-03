@@ -13,18 +13,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RegistroLocalidad extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+    CustomAdapter adapter;
     Button siguiente;
     private Spinner spinner1;
+    String [] names = {"San Ignacio","Progreso","Kanazin","Flamboyanes"};
+    int [] imagenes = {R.drawable.faro, R.drawable.comisaria};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_localidad);
          spinner1= (Spinner)findViewById(R.id.btnspinner0);
+         adapter = new CustomAdapter(this,names,imagenes);
 
-        String [] opciones = {"San Ignacio","Progreso","Kanazin","Flamboyanes"};
+
 
         //aqui se llama al spinner personalizado
-        ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_personalizado, opciones);
+        ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_personalizado, names);
         spinner1.setAdapter(adapter);
 
         siguiente =(Button)findViewById(R.id.btnrdl);
@@ -34,6 +39,7 @@ public class RegistroLocalidad extends AppCompatActivity implements AdapterView.
             public void onClick(View view) {
                 Intent siguiente= new Intent(RegistroLocalidad.this, Servicios.class);
                 startActivity(siguiente);
+
 
             }
         });
