@@ -17,7 +17,7 @@ public class RegistroLogin extends AppCompatActivity {
         setContentView(R.layout.activity_registro_login);
 
 
-        siguiente =(Button)findViewById(R.id.btnrl);
+        siguiente =(Button)findViewById(R.id.btnregistro);
 
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override

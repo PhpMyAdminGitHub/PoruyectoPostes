@@ -8,18 +8,29 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button siguiente;
-
+    Button registro;
+    Button logear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        logear =(Button)findViewById(R.id.btnlogear);
 
-        siguiente =(Button)findViewById(R.id.btnrl);
+        logear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent siguiente= new Intent(MainActivity.this, Inicio.class);
+                startActivity(siguiente);
 
-        siguiente.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+
+
+        registro =(Button)findViewById(R.id.btnregistro);
+
+        registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent siguiente= new Intent(MainActivity.this, RegistroLogin.class);
@@ -27,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }

@@ -76,14 +76,14 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnlogear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Iniciar Sesion" />
 
         <Button
-            android:id="@+id/btnrl"
+            android:id="@+id/btnregistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -16,7 +16,7 @@ public class Servicios extends AppCompatActivity {
         setContentView(R.layout.activity_servicios);
 
 
-        siguiente =(Button)findViewById(R.id.btnsrp);
+        siguiente =(Button)findViewById(R.id.btnservicioP);
 
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
