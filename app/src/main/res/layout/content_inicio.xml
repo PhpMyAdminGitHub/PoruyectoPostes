@@ -10,46 +10,72 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="510dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Serivicios "
-            android:textColor="#FAF9F9"
-            android:textSize="25dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnservicioP"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Servicio de postes" />
-    </LinearLayout>
+            android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Serivicios "
+                android:textColor="#FAF9F9"
+                android:textSize="25dp" />
 
-        <Button
-            android:id="@+id/btnservicioA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Servicio de agua" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnservicioA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_dos"
+                    android:drawableBottom="@drawable/grifo"
+                    android:gravity="center"
+                    android:text="        Servicio de agua" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnservicioP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_dos"
+                    android:drawableBottom="@drawable/imgposte"
+                    android:text="          Servicio de postes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnmapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_dos"
+                    android:drawableBottom="@drawable/mapa"
+                    android:gravity="center"
+                    android:text="     Mapa de postes " />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 
     <fragment

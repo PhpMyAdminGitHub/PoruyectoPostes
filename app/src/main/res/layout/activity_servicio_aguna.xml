@@ -4,67 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:background="@drawable/fondo"
     tools:context=".ServicioAguna">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Servicio de postes"
-            android:textSize="25dp" />
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="228dp"
-        android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/btnspinner0"
-            android:layout_width="fill_parent"
-            android:layout_height="56dp"
-            ></Spinner>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="228dp"
-        android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/btnspinner1"
-            android:layout_width="fill_parent"
-            android:layout_height="56dp"
-            ></Spinner>
-
-
-    </LinearLayout>
-
-    <LinearLayout
+    <ListView
+        android:id="@+id/lista_agua"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:layout_editor_absoluteY="16dp">
 
-        <Button
-            android:id="@+id/btnrdl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar localidad" />
-    </LinearLayout>
+    </ListView>
 
 
 </LinearLayout>
+
+
+
