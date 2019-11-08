@@ -10,10 +10,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/imginicio"
             android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/imgperfil"
-            android:title="@string/menu_perfil" />
+
 
         <item
             android:id="@+id/nav_acerca"

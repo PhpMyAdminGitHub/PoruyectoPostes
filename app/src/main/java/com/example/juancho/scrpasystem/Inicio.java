@@ -100,18 +100,17 @@ public class Inicio extends AppCompatActivity {
                     Intent activity = new Intent(getApplicationContext(),Inicio.class);
                     startActivity(activity);
 
-                } else{if (id==R.id.nav_gallery) {
-
 
                 } else{if (id==R.id.nav_acerca) {
-
+                    Intent activity = new Intent(getApplicationContext(),Acercade.class);
+                    startActivity(activity);
                 }
 
                 else{if (id==R.id.nav_send) {
                     Intent activity = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(activity);
 
-                }}}}
+                }}}
 
 
                 return false;
