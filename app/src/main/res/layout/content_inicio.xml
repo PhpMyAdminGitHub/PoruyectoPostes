@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
-    tools:showIn="@layout/app_bar_main">
+    android:background="@drawable/fondobueno">
 
 
     <ScrollView
@@ -41,7 +40,8 @@
                     android:background="@drawable/btn_dos"
                     android:drawableBottom="@drawable/grifo"
                     android:gravity="center"
-                    android:text="        Servicio de agua" />
+                    android:text="        Servicio de agua"
+                    android:textColor="#ffffff"/>
             </LinearLayout>
 
             <LinearLayout
@@ -55,7 +55,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_dos"
                     android:drawableBottom="@drawable/imgposte"
-                    android:text="          Servicio de postes" />
+                    android:text="          Servicio de postes"
+                    android:textColor="#ffffff"/>
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +71,8 @@
                     android:background="@drawable/btn_dos"
                     android:drawableBottom="@drawable/mapa"
                     android:gravity="center"
-                    android:text="     Mapa de postes " />
+                    android:text="     Mapa de postes "
+                    android:textColor="#ffffff"/>
 
             </LinearLayout>
 

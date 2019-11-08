@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondobueno"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -18,10 +18,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="69dp"
                 app:srcCompat="@drawable/imguserlogin" />
 
             <TextView
@@ -95,7 +100,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/btn_dos"
-                    android:text="Iniciar Sesion" />
+                    android:text="Iniciar Sesion"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/textView9"
@@ -116,7 +122,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/btn_dos"
-                    android:text="Registrarse" />
+                    android:text="Registrarse"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:id="@+id/textView10"
