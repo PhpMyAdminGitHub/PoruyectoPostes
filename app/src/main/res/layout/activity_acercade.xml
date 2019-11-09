@@ -1,9 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondobueno"
+    android:orientation="vertical"
     tools:context=".Acercade">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:gravity="center"
+            android:text="Comisaria de San Ignacio"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="314dp"
+            android:gravity="center"
+            android:text="Localización se encuentra en la comisaría progreseña a la que da su nombre y a la que accede a medianía de la carretera Mérida-Progreso"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="422dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="Desarroladores:" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="422dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="*Christian Garcia" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="422dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="*Carlos Castro" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="422dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:text="*Juan Rodriguez" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

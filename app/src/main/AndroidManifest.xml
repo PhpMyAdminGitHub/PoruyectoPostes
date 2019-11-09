@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Acercade"></activity>
+        <activity android:name=".QuejaPoste"></activity>
+        <activity android:name=".Acercade" />
         <activity
             android:name=".MapaSanIgnacio"
             android:label="@string/title_activity_mapa_san_ignacio" />
@@ -29,7 +30,6 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity android:name=".ServicioAguna" />
-        <activity android:name=".Servicios" />
         <activity android:name=".RegistroLocalidad" />
         <activity android:name=".RegistroLogin" />
         <activity android:name=".Splash">

@@ -51,9 +51,17 @@ public class Inicio extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        siguiente =(Button)findViewById(R.id.btnservicioA);
 
+        siguiente2 =(Button)findViewById(R.id.btnservicioA);
 
+        siguiente2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent siguiente= new Intent(Inicio.this,QuejaPoste.class);
+                startActivity(siguiente);
+
+            }
+        });
 
         siguiente1 =(Button)findViewById(R.id.btnservicioP);
 
@@ -61,16 +69,6 @@ public class Inicio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent siguiente= new Intent(Inicio.this,ServicioPostes.class);
-                startActivity(siguiente);
-
-            }
-        });
-        siguiente2 =(Button)findViewById(R.id.btnservicioA);
-
-        siguiente2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent siguiente= new Intent(Inicio.this,ServicioAguna.class);
                 startActivity(siguiente);
 
             }
