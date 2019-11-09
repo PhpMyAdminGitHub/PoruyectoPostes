@@ -27,6 +27,7 @@
         android:layout_width="243dp"
         android:layout_height="58dp"
         android:layout_centerInParent="true"
+        android:textColor="#ffffff"
         android:drawableRight="@drawable/analitica"
         android:gravity="center"
         android:background="@drawable/btn_dos"
