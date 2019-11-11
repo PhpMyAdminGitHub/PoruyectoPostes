@@ -3,6 +3,7 @@ package com.example.juancho.scrpasystem;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,15 +22,18 @@ import java.util.ArrayList;
 
 public class ServicioPostes extends AppCompatActivity {
     private ListView listViewPostes;
+    //Postes[] items = new Postes[]{(new Postes("Numero de poste: 1","Dirección: Calle 3 por 4 y 6",R.drawable.poste_verde)),(new Postes("Numero de poste: 2","Dirección: Calle 5 por 6 y 8",R.drawable.poste_verde)),(new Postes("Numero de poste: 3","Dirección: Calle 7 por 8 y 10",R.drawable.poste_rojo))};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicio_postes);
 
         listViewPostes=(ListView) findViewById(R.id.lista_postes);
-        ArrayList<Postes> postes=new ArrayList<>();
+        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
+        //listViewPostes.setAdapter(adapter);
+        final ArrayList<Postes> postes=new ArrayList<>();
 
-        postes.add(new Postes("Numero de poste: 1","Dirección: Calle 3 por 4 y 6",R.drawable.poste_verde));
+         postes.add(new Postes("Numero de poste: 1","Dirección: Calle 3 por 4 y 6",R.drawable.poste_verde));
         postes.add(new Postes("Numero de poste: 2","Dirección: Calle 5 por 6 y 8",R.drawable.poste_verde));
         postes.add(new Postes("Numero de poste: 3","Dirección: Calle 7 por 8 y 10",R.drawable.poste_rojo));
         postes.add(new Postes("Numero de poste: 4","Dirección: Calle 9 por 10 y 12",R.drawable.poste_verde));
@@ -38,7 +42,24 @@ public class ServicioPostes extends AppCompatActivity {
         postes.add(new Postes("Numero de poste: 7","Dirección: Calle 15 por 16 y 18",R.drawable.poste_verde));
         postes.add(new Postes("Numero de poste: 8","Dirección: Calle 17 por 18 y 20",R.drawable.poste_rojo));
         postes.add(new Postes("Numero de poste: 9","Dirección:  Calle 19 por 20 y 22",R.drawable.poste_verde));
-        listViewPostes.setAdapter(new ListPostesAdapter(this,postes));;
+        listViewPostes.setAdapter(new ListPostesAdapter(this,postes));
+        listViewPostes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               // Toast.makeText(ServicioPostes.this,position,Toast.LENGTH_SHORT).show();
+                int p=position;
+
+                Toast.makeText(ServicioPostes.this,"Poste numero "+(position+1)+" seleccionado",Toast.LENGTH_SHORT).show();
+                Intent siguiente= new Intent(ServicioPostes.this,QuejaPoste.class);
+                startActivity(siguiente);
+                //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
+
+
+            }
+        });
+
+
+
 
     }
 

@@ -17,7 +17,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="0dp"
         android:gravity="center"
-        android:text="Registro de localidad"
+        android:text="Quejas y Sugerencias"
         android:textColor="#ffffff"
         android:textSize="25dp" />
 

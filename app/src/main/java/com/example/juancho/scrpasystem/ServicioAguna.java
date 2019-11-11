@@ -1,15 +1,18 @@
 package com.example.juancho.scrpasystem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -33,7 +36,22 @@ public class ServicioAguna extends AppCompatActivity {
         tomas.add(new Tomas("Numero de toma de agua: 7","Dirección: Calle 15 por 16 y 18",R.drawable.toma_verde));
         tomas.add(new Tomas("Numero de toma de agua: 8","Dirección: Calle 17 por 18 y 20",R.drawable.toma_roja));
         tomas.add(new Tomas("Numero de toma de agua: 9","Dirección:  Calle 19 por 20 y 22",R.drawable.toma_verde));
-        listViewAgua.setAdapter(new ListAguaAdapter(this,tomas));;
+        listViewAgua.setAdapter(new ListAguaAdapter(this,tomas));
+
+        listViewAgua.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Toast.makeText(ServicioPostes.this,position,Toast.LENGTH_SHORT).show();
+                int p=position;
+
+                Toast.makeText(ServicioAguna.this,"Toma de agua numero "+(position+1)+" seleccionado",Toast.LENGTH_SHORT).show();
+                Intent siguiente= new Intent(ServicioAguna.this,QuejaPoste.class);
+                startActivity(siguiente);
+                //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
+
+
+            }
+        });
     }
 
     //postes

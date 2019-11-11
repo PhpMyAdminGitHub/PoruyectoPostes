@@ -57,7 +57,7 @@ public class Inicio extends AppCompatActivity {
         siguiente2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent siguiente= new Intent(Inicio.this,QuejaPoste.class);
+                Intent siguiente= new Intent(Inicio.this,ServicioAguna.class);
                 startActivity(siguiente);
 
             }
