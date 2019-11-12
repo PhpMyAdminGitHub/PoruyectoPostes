@@ -23,10 +23,16 @@
             android:textColor="#ffffff"
             android:textSize="25dp" />
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_launcher_foreground" />
+
         <TextView
             android:id="@+id/textView12"
             android:layout_width="match_parent"
-            android:layout_height="314dp"
+            android:layout_height="211dp"
             android:gravity="center"
             android:text="Localización se encuentra en la comisaría progreseña a la que da su nombre y a la que accede a medianía de la carretera Mérida-Progreso"
             android:textColor="#ffffff"
@@ -36,38 +42,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="422dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:text="Desarroladores:" />
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="422dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:text="*Christian Garcia" />
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="422dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:text="*Carlos Castro" />
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="422dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:text="*Juan Rodriguez" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Desarrolladores:"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*Christian Garcia"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*Carlos Castro"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*Juan Rodriguez"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
         </LinearLayout>
     </LinearLayout>
 
