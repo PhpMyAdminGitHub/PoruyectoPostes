@@ -59,7 +59,7 @@ public class RegistroLogin extends AppCompatActivity {
             }
         });
     }
-
+//enciptamos valores
     private String encriptar(String datos, String password)throws Exception{
         //pasa los datos de la contrasea y el usuario y cada uno depende del otro para que sea exitoso
         SecretKeySpec secretKey=generateKey(password);//primer tipo de encriptacion
@@ -105,12 +105,13 @@ public class RegistroLogin extends AppCompatActivity {
                 Map<String,String> parametros=new HashMap<String,String>();
                 try {
 
-
+//pasamos los valores obtenidos y los valores encriptados u
                     textosalida1 = encriptar(txtusuario.getText().toString(), txtcontrasena.getText().toString());
                     textosalida2 = encriptar(txtcontrasena.getText().toString(), txtusuario.getText().toString());
                     nombre=txtnombre.getText().toString();
                     apellidop=txtapellidop.getText().toString();
                     apellidom=txtapellidom.getText().toString();
+                    //se manda cada uno a los valores del php que envian a base de datos
                     parametros.put("Nombre",nombre);
                     parametros.put("Apellido_p",apellidop);
                     parametros.put("Apellido_m",apellidom);

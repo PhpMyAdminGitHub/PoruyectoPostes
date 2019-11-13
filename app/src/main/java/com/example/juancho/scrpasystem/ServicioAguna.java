@@ -26,7 +26,7 @@ public class ServicioAguna extends AppCompatActivity {
         setContentView(R.layout.activity_servicio_aguna);
         listViewAgua=(ListView) findViewById(R.id.lista_agua);
         ArrayList<Tomas> tomas=new ArrayList<>();
-
+//se crea la lista con los datos
         tomas.add(new Tomas("Numero de toma de agua: 1","Dirección: Calle 3 por 4 y 6",R.drawable.toma_verde));
         tomas.add(new Tomas("Numero de toma de agua: 2","Dirección: Calle 5 por 6 y 8",R.drawable.toma_verde));
         tomas.add(new Tomas("Numero de toma de agua: 3","Dirección: Calle 7 por 8 y 10",R.drawable.toma_roja));
@@ -36,8 +36,9 @@ public class ServicioAguna extends AppCompatActivity {
         tomas.add(new Tomas("Numero de toma de agua: 7","Dirección: Calle 15 por 16 y 18",R.drawable.toma_verde));
         tomas.add(new Tomas("Numero de toma de agua: 8","Dirección: Calle 17 por 18 y 20",R.drawable.toma_roja));
         tomas.add(new Tomas("Numero de toma de agua: 9","Dirección:  Calle 19 por 20 y 22",R.drawable.toma_verde));
+        //se pasan los valores el adaptar para visualizacion
         listViewAgua.setAdapter(new ListAguaAdapter(this,tomas));
-
+//al dar click redireciona al siguiente layout mostrando mensaje de que item se selecciono
         listViewAgua.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

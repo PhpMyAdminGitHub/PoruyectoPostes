@@ -47,11 +47,12 @@ public class ServicioPostes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // Toast.makeText(ServicioPostes.this,position,Toast.LENGTH_SHORT).show();
-                int p=position;
 
                 Toast.makeText(ServicioPostes.this,"Poste numero "+(position+1)+" seleccionado",Toast.LENGTH_SHORT).show();
-                Intent siguiente= new Intent(ServicioPostes.this,QuejaPoste.class);
-                startActivity(siguiente);
+                Intent intent=new Intent(ServicioPostes.this,QuejaPoste.class);
+                intent.putExtra("pasar",position+1);
+                startActivity(intent);
+
                 //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
 
 
