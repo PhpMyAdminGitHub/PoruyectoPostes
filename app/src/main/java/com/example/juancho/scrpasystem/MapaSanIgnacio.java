@@ -1,8 +1,12 @@
 package com.example.juancho.scrpasystem;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,11 +14,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapaSanIgnacio extends FragmentActivity implements OnMapReadyCallback {
+public class MapaSanIgnacio extends FragmentActivity implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
+    private Marker poste1;
+    private Marker poste2;
+    private Marker poste3;
+    private Marker poste4;
+    private Marker poste5;
+    private Marker poste6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,58 +38,95 @@ public class MapaSanIgnacio extends FragmentActivity implements OnMapReadyCallba
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        //agregar marca
-        LatLng poste1 = new LatLng(21.160559207348967, -89.65024338421769);
-        mMap.addMarker(new MarkerOptions().position(poste1).title("San Ignacio,Progreso,México").snippet("Poste #1").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste2 = new LatLng(21.16024519935273, -89.65150605133151);
-        mMap.addMarker(new MarkerOptions().position(poste2).title("San Ignacio,Progreso,México").snippet("Poste #2").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste3 = new LatLng(21.160433604234015, -89.6523309938607);
-        mMap.addMarker(new MarkerOptions().position(poste3).title("San Ignacio,Progreso,México").snippet("Poste #3").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste4 = new LatLng(21.160119595990892, -89.6538461943777);
-        mMap.addMarker(new MarkerOptions().position(poste4).title("San Ignacio,Progreso,México").snippet("Poste #4").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste5 = new LatLng(21.160308000982738, -89.65596747510992);
-        mMap.addMarker(new MarkerOptions().position(poste5).title("San Ignacio,Progreso,México").snippet("Poste #5").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste6 = new LatLng(21.1600253933846, -89.65699444436697);
-        mMap.addMarker(new MarkerOptions().position(poste6).title("San Ignacio,Progreso,México").snippet("Poste #6").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste7 = new LatLng(21.160027065641387, -89.65923357404908);
-        mMap.addMarker(new MarkerOptions().position(poste7).title("San Ignacio,Progreso,México").snippet("Poste #7").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng poste8 = new LatLng(21.160215470805525, -89.66041206335176);
-        mMap.addMarker(new MarkerOptions().position(poste8).title("San Ignacio,Progreso,México").snippet("Poste #8").icon(BitmapDescriptorFactory.fromResource(R.drawable.poste)));
-
-        LatLng agua1 = new LatLng(21.16031189288492, -89.65008166878098);
-        mMap.addMarker(new MarkerOptions().position(agua1).title("San Ignacio,Progreso,México").snippet("Toma de agua #1").icon(BitmapDescriptorFactory.fromResource(R.drawable.agua)));
-
-        LatLng agua2 = new LatLng(21.160197878840037, -89.65266653148846);
-        mMap.addMarker(new MarkerOptions().position(agua2).title("San Ignacio,Progreso,México").snippet("Toma de agua #2").icon(BitmapDescriptorFactory.fromResource(R.drawable.agua)));
-
-        LatLng agua3 = new LatLng(21.16015173190216, -89.65618286865211);
-        mMap.addMarker(new MarkerOptions().position(agua3).title("San Ignacio,Progreso,México").snippet("Toma de agua #3").icon(BitmapDescriptorFactory.fromResource(R.drawable.agua)));
+        LatLng p1=new LatLng(21.160559207348967, -89.65024338421769);
+        LatLng p2 = new LatLng(21.16024519935273, -89.65150605133151);
+        LatLng p3 = new LatLng(21.160433604234015, -89.6523309938607);
+        LatLng p4 = new LatLng(21.160119595990892, -89.6538461943777);
+        LatLng p5 = new LatLng(21.160308000982738, -89.65596747510992);
+        LatLng p6 = new LatLng(21.1600253933846, -89.65699444436697);
 
 
-        LatLng agua4 = new LatLng(21.160083864712334, -89.65996701953898);
-        mMap.addMarker(new MarkerOptions().position(agua4).title("San Ignacio,Progreso,México").snippet("Toma de agua #4").icon(BitmapDescriptorFactory.fromResource(R.drawable.agua)));
+        poste1=googleMap.addMarker(new MarkerOptions()
+                .position(p1)
+                .title("San Ignacio,Progreso,México")
+                .snippet("Poste 1")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.poste))
+        );
+        poste2=googleMap.addMarker(new MarkerOptions()
+                .position(p2)
+                .title("San Ignacio,Progreso,México")
+                .snippet("Poste 2")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.poste))
+        );
+        poste3=googleMap.addMarker(new MarkerOptions()
+                .position(p3)
+                .title("San Ignacio,Progreso,México")
+                .snippet("Poste 3")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.poste))
+        );
+        poste4=googleMap.addMarker(new MarkerOptions()
+                .position(p4)
+                .title("San Ignacio,Progreso,México")
+                .snippet("Poste 4")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.poste))
+        );
+        poste5=googleMap.addMarker(new MarkerOptions()
+                .position(p5)
+                .title("San Ignacio,Progreso,México")
+                .snippet("Poste 5")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.poste))
+        );
+        poste6=googleMap.addMarker(new MarkerOptions()
+                .position(p6)
+                .title("San Ignacio,Progreso,México")
+                .snippet("Poste 6")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.poste))
+        );
+
+//permisos para ubicacion real
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true); //posicion propia
+
+        } else {
+            Toast.makeText(MapaSanIgnacio.this,"Habilite permisos de ubicacion en su dispositivo",Toast.LENGTH_SHORT).show();
+
+        }
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p4,15));
+        mMap.getUiSettings().setZoomControlsEnabled(true);//habilita boton zoom
+        googleMap.setOnMarkerClickListener(this);
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(poste4,12));
+
+
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        if(marker.equals(poste1)){
+            Toast.makeText(MapaSanIgnacio.this,"Eligio el poste 1",Toast.LENGTH_SHORT).show();
+        }
+        else if(marker.equals(poste2)){
+            Toast.makeText(MapaSanIgnacio.this,"Eligio el poste 2",Toast.LENGTH_SHORT).show();
+        }
+        else if(marker.equals(poste3)){
+            Toast.makeText(MapaSanIgnacio.this,"Eligio el poste 3",Toast.LENGTH_SHORT).show();
+        }
+        else if(marker.equals(poste4)){
+            Toast.makeText(MapaSanIgnacio.this,"Eligio el poste 4",Toast.LENGTH_SHORT).show();
+        }
+        else if(marker.equals(poste5)){
+            Toast.makeText(MapaSanIgnacio.this,"Eligio el porte 5",Toast.LENGTH_SHORT).show();
+        }
+        else if(marker.equals(poste6)){
+            Toast.makeText(MapaSanIgnacio.this,"Eligio el porte 6",Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 }
