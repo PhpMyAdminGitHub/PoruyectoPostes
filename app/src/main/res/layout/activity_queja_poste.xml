@@ -18,7 +18,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="12dp"
         android:gravity="center"
-        android:text="Quejas y Sugerencias postes"
+        android:text="Quejas y Sugerencias de postes"
         android:textColor="#ffffff"
         android:textSize="25dp" />
 
@@ -59,10 +59,11 @@
             android:textColor="#FAF9F9"
             android:textSize="25dp" />
 
+
         <TextView
             android:id="@+id/Num_Poste0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             />
     </LinearLayout>
 

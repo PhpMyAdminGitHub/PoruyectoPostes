@@ -18,7 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección:"
+            android:id="@+id/txtNom3"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +31,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Numero de poste:"
+            android:id="@+id/txtNom4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/txtDir"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="De click a la imagen para enviar un reporte"
+            />
 
     </LinearLayout>
 

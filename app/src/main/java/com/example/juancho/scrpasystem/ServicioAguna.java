@@ -2,7 +2,9 @@ package com.example.juancho.scrpasystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,119 +16,97 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.juancho.scrpasystem.ui.home.HomeViewModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 public class ServicioAguna extends AppCompatActivity {
-    private ListView listViewAgua;
+    //private ListView listViewAgua;
+    TextView text_home1;
+    ListView lista;
+    String[] Numero;
+    String[] Calle;
+    String[] datosimg;
+    private HomeViewModel homeViewModel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicio_aguna);
-        listViewAgua=(ListView) findViewById(R.id.lista_agua);
-        ArrayList<Tomas> tomas=new ArrayList<>();
-//se crea la lista con los datos
-        tomas.add(new Tomas("Numero de toma de agua: 1","Dirección: Calle 3 por 4 y 6",R.drawable.toma_verde));
-        tomas.add(new Tomas("Numero de toma de agua: 2","Dirección: Calle 5 por 6 y 8",R.drawable.toma_verde));
-        tomas.add(new Tomas("Numero de toma de agua: 3","Dirección: Calle 7 por 8 y 10",R.drawable.toma_roja));
-        tomas.add(new Tomas("Numero de toma de agua: 4","Dirección: Calle 9 por 10 y 12",R.drawable.toma_verde));
-        tomas.add(new Tomas("Numero de toma de agua: 5","Dirección: Calle 11 por 12 y 14",R.drawable.toma_amarilla));
-        tomas.add(new Tomas("Numero de toma de agua: 6","Dirección: Calle 13 por 14 y 16",R.drawable.toma_amarilla));
-        tomas.add(new Tomas("Numero de toma de agua: 7","Dirección: Calle 15 por 16 y 18",R.drawable.toma_verde));
-        tomas.add(new Tomas("Numero de toma de agua: 8","Dirección: Calle 17 por 18 y 20",R.drawable.toma_roja));
-        tomas.add(new Tomas("Numero de toma de agua: 9","Dirección:  Calle 19 por 20 y 22",R.drawable.toma_verde));
-        //se pasan los valores el adaptar para visualizacion
-        listViewAgua.setAdapter(new ListAguaAdapter(this,tomas));
-//al dar click redireciona al siguiente layout mostrando mensaje de que item se selecciono
-        listViewAgua.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       // listViewAgua = (ListView) findViewById(R.id.lista_agua);
+
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+        lista = (ListView) findViewById(R.id.lista_agua);
+        //final TextView textView = findViewById(R.id.text_home1);
+
+        validarUsuario("https://scrpaprueba.000webhostapp.com/Conect/listatomas.php");
+
+    }//final onCreate
+    //select usuario con nombre y contraseña en la base de datos
+    private void validarUsuario(String URL){
+        //se envian los 3 parametros
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Toast.makeText(ServicioPostes.this,position,Toast.LENGTH_SHORT).show();
-                int p=position;
+            public void onResponse(String response) {
+                try{
+                    JSONArray ja=new JSONArray(response);
+                    JSONObject jo=null;
+                    Calle=new String[ja.length()];
+                    Numero=new String[ja.length()];
+                    datosimg=new String[ja.length()];
 
-                Toast.makeText(ServicioAguna.this,"Toma de agua numero "+(position+1)+" seleccionado",Toast.LENGTH_SHORT).show();
-                Intent siguiente= new Intent(ServicioAguna.this,QuejaPoste.class);
-                startActivity(siguiente);
-                //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
+                    for(int i=0;i<ja.length();i++){
+                        jo=ja.getJSONObject(i);
+                        Numero[i]=jo.getString("Num_agua");
+                        Calle[i]=jo.getString("Calle");
+                        datosimg[i]=jo.getString("img");
+                    }
+                    lista.setAdapter(new Adaptador2(getApplicationContext(), Numero,Calle, datosimg));
+                }catch (JSONException e){
+                    e.getMessage();
+                }
 
 
             }
-        });
-    }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
 
-    //postes
-    public  class Tomas{
-        String nombre;
-        String direccion;
-        int image;
-        public Tomas(String nombre,String direccion,int image){
-            this.nombre=nombre;
-            this.direccion=direccion;
-            this.image=image;
-        }
-    }
-
-    static class ListAguaAdapter extends BaseAdapter {
-        private  final Context context;
-        private final ArrayList<Tomas> tomas;
-
-        public  ListAguaAdapter(Context context,ArrayList<Tomas> tomas){
-            this.context=context;
-            this.tomas=tomas;
-        }
-
-        @Override
-        public int getCount() {
-            return tomas.size();
-            //devuelve el entero que coresponde al numero de items a enseñar en la lista
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-            //devuelve el view a enseñar para el item
-            LayoutInflater inflater=(LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            Tomas toma=tomas.get(position);
-            ListAguaAdapter.ListViewHolder holder;
-            if(view==null){
-                view=inflater.inflate(R.layout.tomas_row,viewGroup,false);
-                holder=new ListAguaAdapter.ListViewHolder();
-                holder.txtNom=(TextView)view.findViewById(R.id.txtNom);
-                holder.txtDir=(TextView)view.findViewById(R.id.txtDir);
-                holder.imgTomas=(ImageView)view.findViewById(R.id.imgTomas);
-
-                view.setTag(holder);
-
-            }else{
-                Log.d("ListView", "RECYCLED");
-                holder=(ListAguaAdapter.ListViewHolder) view.getTag();
 
             }
-            holder.txtNom.setText(toma.nombre);
-            holder.txtDir.setText(toma.direccion);
-            holder.imgTomas.setImageResource(toma.image);
-            return view;
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //obtendra los valres y se los dara a los parametros para ser ingresados en el php
+                Map<String,String> parametros=new HashMap<String,String>();
+                return parametros;
 
-
-        }
-        static class ListViewHolder{
-            TextView txtNom;
-            TextView txtDir;
-            ImageView imgTomas;
-        }
-    }
-
+            }
+        };
+        RequestQueue requestQueue= Volley.newRequestQueue(this); //comunica con php
+        requestQueue.add(stringRequest);
+    }//fin private
 }
 
 

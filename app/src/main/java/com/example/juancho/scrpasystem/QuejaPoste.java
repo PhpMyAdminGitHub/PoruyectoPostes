@@ -45,7 +45,7 @@ public class QuejaPoste extends AppCompatActivity {
             Spinner spinnerCountries = findViewById(R.id.spinner_countries);
             mAdapter = new CountryAdapter(this, mCountryList);
             spinnerCountries.setAdapter(mAdapter);
-            recibirDatos();
+           recibirDatos();
             //recibimos los datos del activiti de lista
 
 

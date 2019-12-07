@@ -1,6 +1,7 @@
 package com.example.juancho.scrpasystem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,122 +19,90 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.juancho.scrpasystem.ui.home.HomeViewModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ServicioPostes extends AppCompatActivity {
     private ListView listViewPostes;
-    //Postes[] items = new Postes[]{(new Postes("Numero de poste: 1","Dirección: Calle 3 por 4 y 6",R.drawable.poste_verde)),(new Postes("Numero de poste: 2","Dirección: Calle 5 por 6 y 8",R.drawable.poste_verde)),(new Postes("Numero de poste: 3","Dirección: Calle 7 por 8 y 10",R.drawable.poste_rojo))};
+
+    TextView text_home1;
+    ListView lista;
+    String[] Numero;
+    String[] Calle;
+    String[] datosimg;
+    private HomeViewModel homeViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicio_postes);
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+        lista = (ListView) findViewById(R.id.lista_postes);
+        //final TextView textView = findViewById(R.id.text_home1);
 
-        listViewPostes=(ListView) findViewById(R.id.lista_postes);
-        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
-        //listViewPostes.setAdapter(adapter);
-        final ArrayList<Postes> postes=new ArrayList<>();
+        validarUsuario("https://scrpaprueba.000webhostapp.com/Conect/listapostes.php");
 
-         postes.add(new Postes("Numero de poste: 1","Dirección: Calle 3 por 4 y 6",R.drawable.poste_verde));
-        postes.add(new Postes("Numero de poste: 2","Dirección: Calle 5 por 6 y 8",R.drawable.poste_verde));
-        postes.add(new Postes("Numero de poste: 3","Dirección: Calle 7 por 8 y 10",R.drawable.poste_rojo));
-        postes.add(new Postes("Numero de poste: 4","Dirección: Calle 9 por 10 y 12",R.drawable.poste_verde));
-        postes.add(new Postes("Numero de poste: 5","Dirección: Calle 11 por 12 y 14",R.drawable.poste_amarillo));
-        postes.add(new Postes("Numero de poste: 6","Dirección: Calle 13 por 14 y 16",R.drawable.poste_amarillo));
-        postes.add(new Postes("Numero de poste: 7","Dirección: Calle 15 por 16 y 18",R.drawable.poste_verde));
-        postes.add(new Postes("Numero de poste: 8","Dirección: Calle 17 por 18 y 20",R.drawable.poste_rojo));
-        postes.add(new Postes("Numero de poste: 9","Dirección:  Calle 19 por 20 y 22",R.drawable.poste_verde));
-        listViewPostes.setAdapter(new ListPostesAdapter(this,postes));
-        listViewPostes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    }
+
+    private void validarUsuario(String URL){
+        //se envian los 3 parametros
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // Toast.makeText(ServicioPostes.this,position,Toast.LENGTH_SHORT).show();
+            public void onResponse(String response) {
+                try{
+                    JSONArray ja=new JSONArray(response);
+                    JSONObject jo=null;
+                    Calle=new String[ja.length()];
+                    Numero=new String[ja.length()];
+                    datosimg=new String[ja.length()];
 
-                Toast.makeText(ServicioPostes.this,"Poste numero "+(position+1)+" seleccionado",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(ServicioPostes.this,QuejaPoste.class);
-                intent.putExtra("pasar",position+1);
-                startActivity(intent);
-
-                //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
+                    for(int i=0;i<ja.length();i++){
+                        jo=ja.getJSONObject(i);
+                        Numero[i]=jo.getString("Num_Poste");
+                        Calle[i]=jo.getString("Calle");
+                        datosimg[i]=jo.getString("img");
+                    }
+                    lista.setAdapter(new AdaptadorP(getApplicationContext(), Numero,Calle, datosimg));
+                }catch (JSONException e){
+                    e.getMessage();
+                }
 
 
             }
-        });
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();//captura de rror
 
-
-
-
-    }
-
-    public  class Postes{
-        String nombre;
-        String direccion;
-        int image;
-        public Postes(String nombre,String direccion,int image){
-            this.nombre=nombre;
-            this.direccion=direccion;
-            this.image=image;
-        }
-    }
-    static class ListPostesAdapter extends BaseAdapter {
-        private  final Context context;
-        private final ArrayList<Postes> postes;
-
-        public  ListPostesAdapter(Context context,ArrayList<Postes> postes){
-            this.context=context;
-            this.postes=postes;
-        }
-
-        @Override
-        public int getCount() {
-            return postes.size();
-            //devuelve el entero que coresponde al numero de items a enseñar en la lista
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-            //devuelve el view a enseñar para el item
-            LayoutInflater inflater=(LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            Postes poste=postes.get(position);
-            ListViewHolder holder;
-            if(view==null){
-                view=inflater.inflate(R.layout.postes_row,viewGroup,false);
-                holder=new ListViewHolder();
-                holder.txtNom=(TextView)view.findViewById(R.id.txtNom);
-                holder.txtDir=(TextView)view.findViewById(R.id.txtDir);
-                holder.imgPoste=(ImageView)view.findViewById(R.id.imgPoste);
-
-                view.setTag(holder);
-
-            }else{
-                Log.d("ListView", "RECYCLED");
-                holder=(ListPostesAdapter.ListViewHolder) view.getTag();
 
             }
-            holder.txtNom.setText(poste.nombre);
-            holder.txtDir.setText(poste.direccion);
-            holder.imgPoste.setImageResource(poste.image);
-            return view;
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //obtendra los valres y se los dara a los parametros para ser ingresados en el php
+                Map<String,String> parametros=new HashMap<String,String>();
+                return parametros;
 
-
-        }
-        static class ListViewHolder{
-            TextView txtNom;
-            TextView txtDir;
-            ImageView imgPoste;
-        }
-    }
-
+            }
+        };
+        RequestQueue requestQueue= Volley.newRequestQueue(this); //comunica con php
+        requestQueue.add(stringRequest);
+    }//fin private
 
 }
 

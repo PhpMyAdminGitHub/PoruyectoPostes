@@ -4,6 +4,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -111,6 +112,11 @@ public class MapaSanIgnacio extends FragmentActivity implements OnMapReadyCallba
 
         if(marker.equals(poste1)){
             Toast.makeText(MapaSanIgnacio.this,"Eligio el poste 1",Toast.LENGTH_SHORT).show();
+
+
+            Intent siguiente= new Intent(MapaSanIgnacio.this,QuejaPoste.class);
+            startActivity(siguiente);
+
         }
         else if(marker.equals(poste2)){
             Toast.makeText(MapaSanIgnacio.this,"Eligio el poste 2",Toast.LENGTH_SHORT).show();
